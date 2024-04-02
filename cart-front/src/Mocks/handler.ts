@@ -1,8 +1,8 @@
-// src.mocks.handler.ts 생성
 import { http, HttpResponse } from "msw";
+import { URL } from "../../const/url";
 
 export const handlers = [
-  http.get("http://localhost:5173/totalItems", async () => {
+  http.get(URL.getItems(), async () => {
     return HttpResponse.json([
       {
         products: [
@@ -278,6 +278,12 @@ export const handlers = [
               "https://cdn-mart.baemin.com/sellergoods/main/8916edff-9fa9-4538-95c3-13d463f58a86.jpg",
           },
         ],
+      },
+    ]);
+  }),
+  http.get(URL.getCart(), async () => {
+    return HttpResponse.json([
+      {
         carts: [
           {
             id: 1,
@@ -368,6 +374,12 @@ export const handlers = [
             },
           },
         ],
+      },
+    ]);
+  }),
+  http.get(URL.getOrders(), async () => {
+    return HttpResponse.json([
+      {
         orders: [
           {
             id: 1,

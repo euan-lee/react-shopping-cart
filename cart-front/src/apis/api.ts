@@ -1,8 +1,29 @@
-export const fetchTotalItems = async () => {
-  const response = await fetch("http://localhost:5173/totalItems");
+import { AxiosInstance } from "./axios";
+import { URL } from "../Const/url";
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
+export const getTotalItems = async () => {
+  try {
+    const data = await AxiosInstance.get(URL.getItems());
+    return data;
+  } catch (error) {
+    console.error(error);
   }
-  return response.json();
+};
+
+export const getCart = async () => {
+  try {
+    const data = await AxiosInstance.get(URL.getCart());
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getOrders = async () => {
+  try {
+    const data = await AxiosInstance.get(URL.getOrders());
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 };
