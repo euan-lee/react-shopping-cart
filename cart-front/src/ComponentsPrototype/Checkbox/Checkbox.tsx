@@ -1,11 +1,11 @@
 import { HTMLAttributes, ReactNode } from "react";
 
-interface CheckboxProps extends HTMLAttributes<HTMLInputElement> {
+interface CheckBoxProps extends HTMLAttributes<HTMLInputElement> {
   children: ReactNode;
   flag: boolean;
 }
 
-const Checkbox = ({ children, flag, ...props }: CheckboxProps) => {
+const CheckBox = ({ children, flag, ...props }: CheckBoxProps) => {
   return (
     <label>
       <input type="checkbox" disabled={flag} {...props} />
@@ -13,4 +13,4 @@ const Checkbox = ({ children, flag, ...props }: CheckboxProps) => {
     </label>
   );
 };
-export default Checkbox;
+export default CheckBox;
