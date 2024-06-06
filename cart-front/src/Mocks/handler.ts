@@ -1,5 +1,5 @@
 import { http, HttpResponse } from "msw";
-import { URL } from "../Const/url";
+import { URL } from "../Const/Url";
 export const handlers = [
   http.get(URL.getItems(), async () => {
     return HttpResponse.json([
