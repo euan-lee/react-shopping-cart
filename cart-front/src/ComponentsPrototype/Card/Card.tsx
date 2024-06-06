@@ -1,6 +1,8 @@
 import { HTMLAttributes } from "react";
 
-interface CardProps extends HTMLAttributes<HTMLDivElement> {}
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+}
 
 const Card = ({ children, ...props }: CardProps) => {
   return <div {...props}>{children}</div>;
