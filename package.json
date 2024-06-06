@@ -11,5 +11,7 @@
   "scripts": {
     "server": "node server.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "vite": "^5.2.6"
+  }
 }
