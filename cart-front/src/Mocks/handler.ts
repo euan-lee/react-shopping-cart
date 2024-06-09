@@ -405,4 +405,7 @@ export const handlers = [
       },
     ]);
   }),
+  http.post("/products", async () => {
+    console.log('Captured a "POST /posts" request');
+  }),
 ];
