@@ -1,9 +1,9 @@
 import { HTMLAttributes } from "react";
 
-interface FlexItemkProps extends HTMLAttributes<HTMLDivElement> {}
+interface FlexItemProps extends HTMLAttributes<HTMLDivElement> {}
 
-const Stack = ({ children, ...props }: FlexItemkProps) => {
+const FlexItem = ({ children, ...props }: FlexItemProps) => {
   return <div {...props}>{children}</div>;
 };
 
-export default Stack;
+export default FlexItem;
