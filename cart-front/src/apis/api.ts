@@ -4,7 +4,8 @@ import { URL } from "../Const/Url";
 export const getProducts = async () => {
   try {
     const data = await AxiosInstance.get(URL.getProducts());
-    return data;
+    console.log(data);
+    return data.data;
   } catch (error) {
     console.log(error);
   }
