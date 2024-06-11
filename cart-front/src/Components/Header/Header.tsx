@@ -1,15 +1,23 @@
-export const Header = () => {
+import Flex from "../../ComponentsPrototype/Layout/Flex";
+import Image from "../../ComponentsPrototype/Image/Image";
+import FlexItem from "../../ComponentsPrototype/Layout/FlexItem";
+import Text from "../../ComponentsPrototype/Text/Text";
+const Header = () => {
   return (
     <>
-      <nav className="nav flex justify-around">
-        <div className="flex-center">
-          <h1 className="nav-title">CLEAN CODE SHOP</h1>
-        </div>
-        <div className="flex gap-15">
-          <button className="nav-button">장바구니</button>
-          <button className="nav-button">주문목록</button>
-        </div>
-      </nav>
+      <Flex>
+        <FlexItem>
+          <Image />
+        </FlexItem>
+        <Flex>
+          <FlexItem>
+            <Text text="장바구니" />
+            <Text text="주문목록" />
+          </FlexItem>
+        </Flex>
+      </Flex>
     </>
   );
 };
+
+export default Header;

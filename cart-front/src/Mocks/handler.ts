@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 import { URL } from "../Const/Url";
 export const handlers = [
-  http.get(URL.getItems(), async () => {
+  http.get(URL.getProducts(), async () => {
     return HttpResponse.json([
       {
         products: [
@@ -280,6 +280,8 @@ export const handlers = [
       },
     ]);
   }),
+  /*
+  
   http.get(URL.getCart(), async () => {
     return HttpResponse.json([
       {
@@ -405,4 +407,8 @@ export const handlers = [
       },
     ]);
   }),
+  http.post("/products", async () => {
+    console.log('Captured a "POST /posts" request');
+  }),
+  */
 ];
