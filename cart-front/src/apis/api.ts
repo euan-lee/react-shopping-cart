@@ -1,5 +1,5 @@
-import { AxiosInstance } from "./Axios";
-import { URL } from "../Const/Url";
+import { AxiosInstance } from "./axios";
+import { URL } from "../Const/url";
 
 export const getProducts = async () => {
   try {

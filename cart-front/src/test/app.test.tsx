@@ -5,4 +5,7 @@ describe("app test", () => {
   it("check render app ", () => {
     render(<Test />);
   });
+  it("testing for the vitest", () => {
+    expect(true).toBeTruthy();
+  });
 });

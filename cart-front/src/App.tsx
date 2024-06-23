@@ -1,14 +1,12 @@
-import { getTotalItems } from "./Apis/Api";
+import { getProducts } from "./Apis/api";
 import { useQuery } from "@tanstack/react-query";
 
 const App = () => {
   const { data, error, isLoading } = useQuery({
     queryKey: ["todos"],
-    queryFn: getTotalItems,
+    queryFn: getProducts,
   });
-  getTotalItems();
   console.log("data", data);
-
   if (isLoading) return "Loading...";
   if (error) return "An error has occurred: " + error.message;
 
