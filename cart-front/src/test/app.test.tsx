@@ -8,4 +8,7 @@ describe("app test", () => {
   it("testing for the vitest", () => {
     expect(true).toBeTruthy();
   });
+  it("testing for the async", async () => {
+    expect(true).toBeTruthy();
+  });
 });

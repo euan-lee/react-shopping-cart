@@ -6,7 +6,9 @@ const App = () => {
     queryKey: ["todos"],
     queryFn: getProducts,
   });
+
   console.log("data", data);
+
   if (isLoading) return "Loading...";
   if (error) return "An error has occurred: " + error.message;
 
