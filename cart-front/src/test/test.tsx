@@ -1,3 +1,5 @@
-export const Test = () => {
-  return <div>test</div>;
+import { Products } from "../Types/types";
+
+export const TestComponent = ({ products }: Products) => {
+  return <>test</>;
 };

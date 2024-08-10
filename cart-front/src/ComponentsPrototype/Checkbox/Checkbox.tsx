@@ -1,14 +1,43 @@
-import { HTMLAttributes, ReactNode } from "react";
+import { HTMLAttributes, ReactNode, useState, useEffect } from "react";
 
 interface CheckBoxProps extends HTMLAttributes<HTMLInputElement> {
-  children: ReactNode;
+  children?: ReactNode;
   flag: boolean;
+  handleChange: () => void;
 }
 
-const CheckBox = ({ children, flag, ...props }: CheckBoxProps) => {
+const CheckBox = ({
+  children,
+  flag,
+  handleChange,
+  ...props
+}: CheckBoxProps) => {
+  const [check, setCheck] = useState(flag);
+
+  useEffect(() => {
+    setCheck(flag);
+  }, [flag]);
+
+  const handleCheckChange = () => {
+    setCheck(!check);
+    handleChange();
+  };
+
   return (
-    <label>
-      <input type="checkbox" disabled={flag} {...props} />
+    <label className="pl-2">
+      <input
+        className="appearance:none rounded-sm w-8 h-8 cursor-pointer 
+            focus:outline-none appearance-none 
+            cursor:pointer checked:bg-customTeal
+            after:content-['✔'] w-8 h-8 text-xs text-[#ad7373] flex justify-center items-center appearance-none
+          "
+        type="checkbox"
+        checked={check}
+        onChange={() => {
+          handleCheckChange();
+        }}
+        {...props}
+      />
       {children}
     </label>
   );

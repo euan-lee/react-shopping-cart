@@ -2,11 +2,24 @@
 /// <reference types="vite/client" />
 
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import viteReact from "@vitejs/plugin-react";
 import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
-
+import svgr from "vite-plugin-svgr";
 export default defineConfig({
-  plugins: [react(), TanStackRouterVite()],
+  plugins: [
+    svgr({
+      svgrOptions: {
+        exportType: "default",
+        ref: true,
+        svgo: false,
+        titleProp: true,
+      },
+      include: "**/*.svg",
+    }),
+    TanStackRouterVite(),
+    viteReact(),
+  ],
+
   test: {
     globals: true,
     environment: "jsdom",

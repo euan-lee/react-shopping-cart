@@ -2,16 +2,11 @@ import React from "react";
 
 interface TextProps {
   text: string;
-  fontSize?: string;
+  className?: string;
 }
 
-const Text: React.FC<TextProps> = ({ text, fontSize }) => {
-  const style: React.CSSProperties = {};
-  if (fontSize) {
-    style.fontSize = fontSize;
-  }
-
-  return <span style={style}>{text}</span>;
+const Text: React.FC<TextProps> = ({ text, className }) => {
+  return <span className={className}>{text}</span>;
 };
 
 export default Text;

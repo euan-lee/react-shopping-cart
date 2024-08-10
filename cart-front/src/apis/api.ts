@@ -1,10 +1,15 @@
 import { AxiosInstance } from "./axios";
-import { URL } from "../Const/url";
+import { URLS } from "../Const/url";
 
-export const getProducts = async () => {
+export const getProducts = async ({
+  page,
+  limit,
+}: {
+  page: number;
+  limit: number;
+}) => {
   try {
-    const data = await AxiosInstance.get(URL.getProducts());
-    console.log(data);
+    const data = await AxiosInstance.get(URLS.getProducts({ page, limit }));
     return data.data;
   } catch (error) {
     console.log(error);
@@ -19,7 +24,7 @@ interface products {
 
 export const postProducts = async ({ price, name, imageUrl }: products) => {
   try {
-    await AxiosInstance.post(URL.getProducts(), {
+    await AxiosInstance.post(URLS.postProducts(), {
       price,
       name,
       imageUrl,
@@ -31,8 +36,8 @@ export const postProducts = async ({ price, name, imageUrl }: products) => {
 
 export const getProduct = async (id: string) => {
   try {
-    const data = await AxiosInstance.get(URL.getProduct(id));
-    return data;
+    const response = await AxiosInstance.get(URLS.getProduct(id));
+    return response.data;
   } catch (error) {
     console.log(error);
   }
@@ -40,7 +45,7 @@ export const getProduct = async (id: string) => {
 
 export const deleteProduct = async (id: string) => {
   try {
-    const data = await AxiosInstance.delete(URL.deleteProduct(id));
+    const data = await AxiosInstance.delete(URLS.deleteProduct(id));
     return data;
   } catch (error) {
     console.log(error);
@@ -56,8 +61,8 @@ interface Cart {
 
 export const getCarts = async () => {
   try {
-    const data = await AxiosInstance.get(URL.getCarts());
-    return data;
+    const response = await AxiosInstance.get(URLS.getCarts());
+    return response.data[0];
   } catch (error) {
     console.log(error);
   }
@@ -65,7 +70,7 @@ export const getCarts = async () => {
 
 export const postCarts = async ({ id, name, price, imageUrl }: Cart) => {
   try {
-    const data = await AxiosInstance.post(URL.postCarts(), {
+    const data = await AxiosInstance.post(URLS.postCarts(id.toString()), {
       id,
       name,
       price,
@@ -79,27 +84,17 @@ export const postCarts = async ({ id, name, price, imageUrl }: Cart) => {
 
 export const deleteCarts = async (id: string) => {
   try {
-    const data = await AxiosInstance.delete(URL.deleteCarts(id));
+    const data = await AxiosInstance.delete(URLS.deleteCarts(id));
     return data;
   } catch (error) {
     console.log(error);
   }
 };
 
-interface Order {
-  id: number;
-  price: number;
-  name: string;
-  imageUrl: string;
-  quantity: number;
-}
-
-type OrderDetails = Order[];
-
-export const postOrders = async (orderDetails: OrderDetails) => {
+export const postOrders = async () => {
   try {
-    const data = await AxiosInstance.post(URL.postOrders(), orderDetails);
-    return data;
+    const response = await AxiosInstance.post(URLS.postOrders());
+    return response.data;
   } catch (error) {
     console.log(error);
   }
@@ -107,8 +102,8 @@ export const postOrders = async (orderDetails: OrderDetails) => {
 
 export const getOrders = async () => {
   try {
-    const data = await AxiosInstance.get(URL.getOrders());
-    return data;
+    const response = await AxiosInstance.get(URLS.getOrders());
+    return response.data.orders;
   } catch (error) {
     console.log(error);
   }
@@ -116,9 +111,20 @@ export const getOrders = async () => {
 
 export const getOrder = async (id: string) => {
   try {
-    const data = await AxiosInstance.get(URL.getOrder(id));
-    return data;
+    const { data: response } = await AxiosInstance.get(URLS.getOrder(id));
+    return response;
   } catch (error) {
     console.log(error);
   }
+};
+
+export const ToggleCheck = async (id: string) =>
+  AxiosInstance.post(URLS.postCartsItemCheck(id));
+
+export const IncreaseItem = async (id: string) => {
+  AxiosInstance.post(URLS.postCartsItemNumber(id));
+};
+
+export const DecreaseItem = async (id: string) => {
+  AxiosInstance.post(URLS.postdecreaseCartsItemNumber(id));
 };

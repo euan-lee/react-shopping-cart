@@ -1,12 +1,22 @@
-export const URL = {
-  getProducts: () => `/products`,
+export const URLS = {
+  getProducts: ({ page, limit }: { page: number; limit: number }) => {
+    console.log("url 확인", "page", page, "limit", limit);
+    return `/products?page=${page}&limit=${limit}`;
+  },
   postProducts: () => `/products`,
   getProduct: (id: string) => `/products/${id}`,
   deleteProduct: (id: string) => `/products/${id}`,
   getCarts: () => `/carts`,
-  postCarts: () => `/carts`,
-  deleteCarts: (id: string) => `/carts/${id}`,
+  postCarts: (id: string) => `/carts/${id}`,
+  postCartsItemCheck: (id: string) => `/cartsItem/${id}`,
+  deleteCartsItem: (id: string) => `/carts/${id}`,
+  postCartsItemNumber: (id: string) => `/cartsItemIncrease/${id}`,
+  postdecreaseCartsItemNumber: (id: string) => `/cartsItemDecrease/${id}`,
+  deleteAllCartsItems: () => `/cartsDeleteAll`,
+  postresetCartsDone: () => `/carts/reset-done`,
+  postComfirmOrderCartsItems: () => `/cartsComfirmOrder`,
   postOrders: () => `/orders`,
+  postPayment: () => `/orders/Payment`,
   getOrders: () => `/orders`,
-  getOrder: (id: string) => `/orders/${id}`,
+  getOrder: (id: string) => `/order/${id}`,
 };

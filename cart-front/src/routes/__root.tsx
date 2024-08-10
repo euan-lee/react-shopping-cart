@@ -1,20 +1,26 @@
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import Header from "../Components/Header/Header";
+import { ScrollRestoration } from "@tanstack/react-router";
+import { ReactNode } from "react";
+
+interface ProductLayoutProps {
+  children: ReactNode;
+  className?: string;
+}
+export const ProductLayout = ({ children }: ProductLayoutProps) => {
+  return <div className="gap-5 p-12 px-60">{children}</div>;
+};
 
 export const Route = createRootRoute({
-  component: () => (
-    <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>{" "}
-        <Link to="/about/about2" className="[&.active]:font-bold">
-          tes
-        </Link>{" "}
-      </div>
-      <hr />
-      <Outlet />
-      <TanStackRouterDevtools />
-    </>
-  ),
+  component: () => {
+    return (
+      <>
+        <Header />
+        <Outlet />
+        <ScrollRestoration getKey={(location) => location.pathname} />
+        <TanStackRouterDevtools />
+      </>
+    );
+  },
 });
