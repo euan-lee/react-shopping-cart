@@ -18,18 +18,6 @@ export const OrderPaymentView = ({
 }) => {
   const PaymentMutation = useMutation({
     mutationFn: () => AxiosInstance.post(URLS.postPayment()),
-    onSuccess: async () => {
-      console.log("주문 성공했습니다!");
-    },
-    onMutate: async (data) => {
-      console.log("주문 성공했습니다!", data);
-    },
-    onError: (error) => {
-      console.error("주문 실패:", error);
-    },
-    onSettled: () => {
-      console.log("요청은 날아감");
-    },
   });
 
   if (orderDetails === null) return null;

@@ -34,7 +34,6 @@ const CartItem = ({ item }: { item: CartItemWithCheck }) => {
       <Flex className="flex flex-col items-end gap-4">
         <Button
           onClick={() => {
-            console.log("clicked");
             deleteCartItem.mutate(item.id.toString());
           }}>
           <TrashIcon />
