@@ -4,6 +4,7 @@ import Image from "../../ComponentsPrototype/Image/Image";
 import Flex from "../../ComponentsPrototype/Layout/Flex";
 import Text from "../../ComponentsPrototype/Text/Text";
 import { Link } from "@tanstack/react-router";
+
 export const OrderItem = ({ order }: { order: orderDetails }) => {
   const { imageUrl, name, price, quantity } = order;
   return (
