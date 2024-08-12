@@ -23,6 +23,7 @@ export const useCartItemDeleteAllMutation = () => {
 
     onError: (error, _, context) => {
       queryClient.setQueryData(["Cart"], context ? context.previousCart : []);
+      throw error;
     },
   });
 };

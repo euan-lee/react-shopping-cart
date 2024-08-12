@@ -84,7 +84,7 @@ export const postCarts = async ({ id, name, price, imageUrl }: Cart) => {
 
 export const deleteCarts = async (id: string) => {
   try {
-    const data = await AxiosInstance.delete(URLS.deleteCarts(id));
+    const data = await AxiosInstance.delete(URLS.deleteCartsItem(id));
     return data;
   } catch (error) {
     console.log(error);

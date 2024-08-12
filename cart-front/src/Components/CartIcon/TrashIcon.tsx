@@ -1,5 +1,8 @@
-import Trash from "../..//Svg/Trash.svg";
-
+import TrashSvg from "../..//Svg/Trash.svg";
 export const TrashIcon = () => {
-  return <Trash width="20px" height="20px" />;
+  return (
+    <div className="w-5 h-5 flex">
+      <TrashSvg />
+    </div>
+  );
 };

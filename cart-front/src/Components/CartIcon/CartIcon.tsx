@@ -10,12 +10,12 @@ export const CartIcon = ({ id, name, price, imageUrl }: Product) => {
   });
 
   return (
-    <CartSvg
-      width="20px"
-      height="20px"
+    <div
+      className="w-5 h-5 flex"
       onClick={() => {
         CartMutation.mutate({ id, name, price, imageUrl });
-      }}
-    />
+      }}>
+      <CartSvg />
+    </div>
   );
 };

@@ -15,7 +15,7 @@ export const ProductInfiniteScroll = (): [
     queryFn: ({ pageParam }: { pageParam: number }) =>
       getProducts({ page: pageParam, limit: 16 }),
     initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages, lastPageParam) => {
+    getNextPageParam: (lastPage, _, lastPageParam) => {
       if (lastPage.length === 0) {
         return 1;
       }

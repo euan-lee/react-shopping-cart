@@ -6,14 +6,8 @@ import { ReactNode } from "@tanstack/react-router";
 import { renderHook, render, screen } from "@testing-library/react";
 import { useProductsQuery } from "../Pages/Products/useProducQuery";
 import { waitFor, cleanup, configure } from "@testing-library/react";
-import { ProductsView } from "../Pages/Products/ProductsList";
-import {
-  createRootRoute,
-  createRoute,
-  createRouter,
-} from "@tanstack/react-router";
 import { RouterProvider } from "@tanstack/react-router";
-import { HttpResponse, http } from "msw";
+import { router } from "../main";
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
@@ -136,18 +130,6 @@ const data = [
 configure({ reactStrictMode: true });
 describe("Products testcode", async () => {
   it("1.ProductsView가 렌더링 되는지 확인", async () => {
-    const rootRoute = createRootRoute();
-
-    const indexRoute = createRoute({
-      getParentRoute: () => rootRoute,
-      path: "/products",
-      component: () => <ProductsView products={data} />,
-    });
-
-    const router = createRouter({
-      routeTree: rootRoute.addChildren([indexRoute]),
-    });
-
     render(<RouterProvider router={router} />);
 
     window.history.pushState({}, "Test page", "/products");
@@ -179,65 +161,8 @@ describe("Products testcode", async () => {
     );
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
   });
-  /* 
-  it("3.실패 시에", async () => {
-    server.use(
-      http.get("/products?page=1&limit=16", () => {
-        console.log("실행되나?");
-        return new HttpResponse(null, { status: 401 });
-      })
-    );
 
-    const queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false,
-        },
-      },
-    });
-
-    const wrapper = ({ children }: ReactNode) => (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    );
-
-    const { result } = renderHook(
-      () => useProductsQuery({ page: 1, limit: 16 }),
-      {
-        wrapper,
-      }
-    );
-    console.log(result.status);
-    await waitFor(() => expect(result.current.isError).toBe(true));
-  });
-*/
-  it("4. 로딩 시에", async () => {
-    /*
-    const queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false,
-        },
-      },
-    });
-
-    const wrapper = ({ children }: ReactNode) => (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    );
-
-    const { result, waitForNextUpdate } = renderHook(
-      () => useProductsQuery({ page: 1, limit: 16 }),
-      {
-        wrapper,
-      }
-    );
-
-    expect(result.current.isLoading).toBe(true);
-
-    await waitForNextUpdate();
-
-    expect(result.current.isLoading).toBe(false);
-  */
-  });
+  it("4. 로딩 시에", async () => {});
 
   it("5.새로 고침시 기존 위치 저장", async () => {});
 

@@ -34,6 +34,7 @@ export const useCartCountMutation = () => {
       if (context?.previousCart) {
         queryClient.setQueryData(["Cart"], context.previousCart);
       }
+      throw error;
     },
   });
 
@@ -70,6 +71,7 @@ export const useCartItemDecreaseMutation = () => {
     onError: (error, _, context) => {
       if (context?.previousCart) {
         queryClient.setQueryData(["Cart"], context.previousCart);
+        throw(error)
       }
     },
   });

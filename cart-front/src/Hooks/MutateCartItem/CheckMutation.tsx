@@ -26,10 +26,11 @@ export const useCheckMutation = () => {
       return { previousCart };
     },
 
-    onError: (error, id, context) => {
+    onError: (error, _, context) => {
       if (context?.previousCart) {
         queryClient.setQueryData(["Cart"], context.previousCart);
       }
+      throw error;
     },
   });
 

@@ -1,8 +1,6 @@
 export const URLS = {
-  getProducts: ({ page, limit }: { page: number; limit: number }) => {
-    console.log("url 확인", "page", page, "limit", limit);
-    return `/products?page=${page}&limit=${limit}`;
-  },
+  getProducts: ({ page, limit }: { page: number; limit: number }) =>
+    `/products?page=${page}&limit=${limit}`,
   postProducts: () => `/products`,
   getProduct: (id: string) => `/products/${id}`,
   deleteProduct: (id: string) => `/products/${id}`,

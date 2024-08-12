@@ -31,6 +31,7 @@ export const useCartItemsToggleMutation = () => {
       if (context?.previousCart) {
         queryClient.setQueryData(["Cart"], context.previousCart);
       }
+      throw error;
     },
   });
 
